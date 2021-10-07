@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const app = require('./app.js');
-const { PORT = 3000, MONGODB_URI, PW } = process.env;
+const { PORT = 3000, MONGODB_URI } = process.env;
 
 mongoose.connect(MONGODB_URI, { 
   useNewUrlParser: true, 

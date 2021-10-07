@@ -7,15 +7,67 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <h3>Add a project</h3>
+    <h2>Add a project</h2>
     <form action="/api/projects" method="post">
-      <p><input name="id" placeholder="id" /></p>
-      <p><input name="image" placeholder="image" /></p>
-      <p><input name="heading" placeholder="heading" /></p>
-      <p><input name="details" placeholder="details" /></p>
-      <p><input name="category" placeholder="category" /></p>
-      <p><button type="submit">Add</button>
+      <p>
+        <input id="secret" name="secret" placeholder="secret..." />
+        <label for="secret">secret</label>
+      </p>
+
+      <p>
+        <input id="id" name="id" placeholder="id..." />
+        <label for="id">id</label>
+      </p>
+
+      <p>
+        <input id="sortOrder" name="sortOrder" placeholder="sort order..." type="number" />
+        <label for="sortOrder">sort order</label>
+      </p>
+
+      <p>
+        <input id="image" name="image" placeholder="image..." />
+        <label for="image">image</label>
+      </p>
+
+      <p>
+        <input id="heading" name="heading" placeholder="heading..." />
+        <label for="heading">heading</label>
+      </p>
+
+      <p>
+        <textarea id="details" name="details" placeholder="details..." rows="5"></textarea>
+        <label for="details">details</label>
+      </p>
+
+      <p>
+        <input id="category" name="category" placeholder="category..." />
+        <label for="category">category</label>
+      </p>
+
+      <p>
+        <input id="languages" name="languages" placeholder="languages array..." />
+        <label for="languages">languages</label>
+      </p>
+
+      <p>
+        <input id="play" name="infoButtons[play]" placeholder="Play url..." />
+        <label for="play">play</label>
+      </p>
+
+      <p>
+        <input id="github" name="infoButtons[github]" placeholder="Github url..." />
+        <label for="github">github</label>
+      </p>
+
+      <p>
+        <input id="code" name="infoButtons[code]" placeholder="Code url..." />
+        <label for="code">code</label>
+      </p>
+
+      <p><button type="submit">Add project</button></p>
     </form>
+    <button onclick="location='/api/projects'">View JSON</button>
     <script src="script.js"></script>
   </body>
 </html>
+
