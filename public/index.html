@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Add a project</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h3>Add a project</h3>
+    <form action="/api/projects" method="post">
+      <p><input name="id" placeholder="id" /></p>
+      <p><input name="image" placeholder="image" /></p>
+      <p><input name="heading" placeholder="heading" /></p>
+      <p><input name="details" placeholder="details" /></p>
+      <p><input name="category" placeholder="category" /></p>
+      <p><button type="submit">Add</button>
+    </form>
+    <script src="script.js"></script>
+  </body>
+</html>
