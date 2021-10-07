@@ -39,7 +39,8 @@ label {
   opacity: 0;
 }
 
-input:placeholder-shown {
+input:placeholder-shown,
+textarea:placeholder-shown {
   text-transform: uppercase;
 }
 
