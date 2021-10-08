@@ -4,70 +4,75 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Add a project</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="./style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <h2>Add a project</h2>
     <form action="/api/projects" method="post">
+    <h2>Add a project <button type="submit">+</button></h2>
       <p>
-        <input id="secret" name="secret" placeholder="secret..." />
+        <input id="secret" name="secret" placeholder="secret" />
         <label for="secret">secret</label>
       </p>
 
       <p>
-        <input id="id" name="id" placeholder="id..." />
+        <input id="id" name="id" placeholder="id" />
         <label for="id">id</label>
       </p>
 
       <p>
-        <input id="sortOrder" name="sortOrder" placeholder="sort order..." type="number" />
+        <input id="sortOrder" name="sortOrder" placeholder="sort order" type="number" />
         <label for="sortOrder">sort order</label>
       </p>
 
       <p>
-        <input id="image" name="image" placeholder="image..." />
+        <input id="active" name="active" placeholder="active" />
+        <label for="active">active</label>
+      </p>
+
+      <p>
+        <input id="image" name="image" placeholder="image" />
         <label for="image">image</label>
       </p>
 
       <p>
-        <input id="heading" name="heading" placeholder="heading..." />
+        <input id="heading" name="heading" placeholder="heading" />
         <label for="heading">heading</label>
       </p>
 
       <p>
-        <textarea id="details" name="details" placeholder="details..." rows="5"></textarea>
+        <textarea id="details" name="details" placeholder="details" rows="5"></textarea>
         <label for="details">details</label>
       </p>
 
       <p>
-        <input id="category" name="category" placeholder="category..." />
+        <input id="category" name="category" placeholder="category" />
         <label for="category">category</label>
       </p>
 
       <p>
-        <input id="languages" name="languages" placeholder="languages array..." />
+        <input id="languages" name="languages" placeholder="languages array" />
         <label for="languages">languages</label>
       </p>
 
       <p>
-        <input id="play" name="infoButtons[play]" placeholder="Play url..." />
-        <label for="play">play</label>
+        <input id="play" name="infoButtons[play]" placeholder="Play url" />
+        <label for="play">play url</label>
       </p>
 
       <p>
-        <input id="github" name="infoButtons[github]" placeholder="Github url..." />
-        <label for="github">github</label>
+        <input id="github" name="infoButtons[github]" placeholder="Github url" />
+        <label for="github">github url</label>
       </p>
 
       <p>
-        <input id="code" name="infoButtons[code]" placeholder="Code url..." />
-        <label for="code">code</label>
+        <input id="code" name="infoButtons[code]" placeholder="Code url" />
+        <label for="code">code url</label>
       </p>
 
       <p><button type="submit">Add project</button></p>
     </form>
     <button onclick="location='/api/projects'">View JSON</button>
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
   </body>
 </html>
 

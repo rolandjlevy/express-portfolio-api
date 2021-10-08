@@ -25,7 +25,7 @@ router.get('/success', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const languages = req.body.languages.split(',');
+  const languages = req.body.languages.replace(/ /g, '').split(',');
   const values = { ...req.body, languages, date_added: new Date() };
   if (values.secret !== PW) {
     res.status(400).json({

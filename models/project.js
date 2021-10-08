@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   id: { type: String, required: true },
   sortOrder: { type: Number, required: true },
+  active: { type: Number, required: true },
   image: { type: String, required: true },
   heading: { type: String, required: true },
   details: { type: String, required: true },
