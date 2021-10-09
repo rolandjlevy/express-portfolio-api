@@ -15,7 +15,7 @@ const project = {
   }
 }
 
-const secret = '';
+const secret = 'Kadampa13!';
 $('#secret').value = secret;
 $('#secret').focus();
 
