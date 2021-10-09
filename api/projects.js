@@ -20,10 +20,6 @@ router.get('/', async (req, res) => {
   res.json(projects);
 });
 
-router.get('/success', async (req, res) => {
-  res.sendFile('/success.html');
-});
-
 router.post('/', async (req, res) => {
   const languages = req.body.languages.replace(/ /g, '').split(',');
   const values = { ...req.body, languages, date_added: new Date() };
@@ -36,7 +32,7 @@ router.post('/', async (req, res) => {
   try {
     const response = await newProject.save();
     const projects = await getProjects();
-    res.sendFile(path.join(__dirname, '../public/success.html'));
+    res.render('pages/success');
   } catch (err) {
     res.status(400).json({
       "error": err,

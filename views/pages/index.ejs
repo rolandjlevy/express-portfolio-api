@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Add a project</title>
-    <link href="./style.css" rel="stylesheet" type="text/css" />
+    <%- include('../partials/head', { title: 'Add a project' }); %>
   </head>
   <body>
-    <form action="/api/projects" method="post">
+    <form action="../../api/projects" method="post">
     <h2>Add a project <button type="submit">+</button></h2>
       <p>
         <input id="secret" name="secret" placeholder="secret" />
@@ -80,7 +77,7 @@
       <p><button type="submit">Add project</button></p>
     </form>
     <button onclick="location='/api/projects'">View JSON</button>
-    <script src="./script.js"></script>
+    <script src="../script.js"></script>
   </body>
 </html>
 

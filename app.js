@@ -4,7 +4,11 @@ const path = require('path');
 const app = express();
 const { ORIGIN_URI_DEV, ORIGIN_URI_LIVE } = process.env;
 
+const ejs = require('ejs');
+app.set('view engine', 'ejs');
 app.use(express.static(__dirname + "/public"));
+app.set('views', __dirname + '/views');
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
@@ -22,8 +26,7 @@ const projects = require('./api/projects');
 app.use('/api/projects', projects);
 
 app.get('/', (req, res) => {
-  const homepage = path.join(__dirname, '/public/index.html');
-  res.sendFile(homepage);
+  res.render('pages/index');
 });
 
 module.exports = app;
