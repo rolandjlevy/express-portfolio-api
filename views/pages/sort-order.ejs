@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head', { title: 'Update sort order' }); %>
+  <link href="../../sort-order.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <form action="/api/projects/sort-order" method="post">
+      <h2>Update sort order <button type="submit">↻</button></h2>
+      <section id="sortableList" class="list-group">
+        <% projects.forEach((project, index) => { %>
+          <div data-id="<%= project._id %>">
+            <img src="<%= `${imagesFolder}${project.image}` %>" />
+            <%= project.heading %>
+          </div>
+        <% }); %>
+      </section>
+      <input id="order" name="order" type="text" />
+      <button type="submit" class="m-b-20">Update</button>
+    </form>
+    <a href="/">Add a project</a> | <a href="/api/projects">View JSON</a>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="../../sort-order.js"></script>
+  </body>
+</html>
+

@@ -4,7 +4,7 @@
     <%- include('../partials/head', { title: 'Add a project' }); %>
   </head>
   <body>
-    <form action="../../api/projects" method="post">
+    <form action="/api/projects" method="post">
     <h2>Add a project <button type="submit">+</button></h2>
       <p>
         <input id="secret" name="secret" placeholder="secret" />
@@ -76,8 +76,7 @@
 
       <p><button type="submit">Add project</button></p>
     </form>
-    <button onclick="location='/api/projects'">View JSON</button>
+    <a href="/api/projects/sort-order">Change sort order</a> | <a href="/api/projects">View JSON</a>
     <script src="../script.js"></script>
   </body>
 </html>
-

@@ -1,0 +1,74 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 600px;
+  padding: 0 15px;
+  margin: 1rem auto 0 auto;
+}
+
+.list-group {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.list-group > div:hover {
+  background-color: #f7f7f7;
+}
+
+.list-group > div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: .75rem 1.25rem;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0;
+  cursor: move;
+}
+
+.list-group > div:first-child {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.list-group > div:last-child {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.list-group > div > img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+}
+
+.sortable-chosen {
+  background: rgba(200, 200, 200, 0.6) !important;
+}
+
+.sortable-drag {
+  background: rgba(200, 200, 200) !important;
+}
+
+h6 {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+  color: black;
+}
+
+.m-b-20 {
+  margin-bottom: 20px;
+}
