@@ -27,12 +27,21 @@ router.get('/sort-order', async (req, res) => {
 });
 
 router.post('/sort-order', async (req, res) => {
-  const { order } = req.body;
-  const sortOrders = JSON.parse(order);
   try {
-    const projects = await getProjects();
-    projects.forEach(project => {
-      const found = sortOrders.find(item => item.id === project._id.valueOf());
+    const { order } = req.body;
+    const sortOrders = JSON.parse(order);
+    const result = await Project.updateOne(
+      { _id: '6160ba763014a89da53316bd' }, {
+      $set: { sortOrder: 33 }
+    });
+    console.log(result);
+    // const results = await Project.updateMany(
+    //   { active: 1 },
+    //   $set: { sortOrder: 33 }
+    // )
+    // const projects = await getProjects();
+    // projects.forEach(project => {
+    // const found = sortOrders.find(item => item.id === project._id.valueOf());
       // console.log(found)
       // project.updateOne({
       //   _id: found.id
@@ -41,7 +50,7 @@ router.post('/sort-order', async (req, res) => {
       //     sortOrder: found.sortOrder
       //   }
       // });
-    })
+    // });
   } catch (err) {
     return {
       "error": err,

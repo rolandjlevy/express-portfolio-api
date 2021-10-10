@@ -17,9 +17,9 @@ const project = {
 
 const secret = '';
 $('#secret').value = secret;
-$('#secret').focus();
 
 if (secret.length) {
+  $('#secret').focus();
   Object.entries(project).forEach(([key, value]) => {
     if (key === 'languages') {
       $(`#${key}`).value = value.join()
