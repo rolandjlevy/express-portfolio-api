@@ -13,6 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
+const projects = require('./api/projects');
+app.use('/api/projects', projects);
+
 app.use((req, res, next) => {
   let origins = [ORIGIN_URI_DEV, ORIGIN_URI_LIVE];
   if (origins.includes(req.query.origin)) {
@@ -22,11 +25,40 @@ app.use((req, res, next) => {
   next();
 });
 
-const projects = require('./api/projects');
-app.use('/api/projects', projects);
-
 app.get('/', (req, res) => {
   res.render('pages/index');
+});
+
+/*////////////////*/
+/* Error handling */
+/*////////////////*/
+
+app.use((req, res, next) => {
+    const err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+// wildcard route throws 302 error (temporary redirect)
+app.get('*', (req, res, next) => {
+  const error = new Error(`${req.ip} tried to access ${req.originalUrl}`);
+  error.statusCode = 302;
+  next(error);
+});
+
+// middleware for handing errors
+app.use((err, req, res, next) => {
+    const status = err.statusCode || 500;
+    const message = err.message || 'unknown';
+    if (err.statusCode === 302) {
+      return res.status(302).redirect('/not-found');
+    }
+    return res.status(status).render('pages/error', { error:err.toString() })
+});
+
+// page not found (404)
+app.get('/not-found', (req, res) => {
+  res.status(404).render('pages/not-found');
 });
 
 module.exports = app;

@@ -5,79 +5,82 @@
     <%- include('../partials/head', { title }); %>
   </head>
   <body>
-    <form action="/api/projects" method="post">
-      <h2 class="m-b-20"><%= title %> <button type="submit">+</button></h2>
-      <%- include('../partials/header'); %>
-      <p>
-        <input id="secret" type="text" name="secret" placeholder="secret" />
-        <label for="secret">secret</label>
-      </p>
+    <main class="container">
+      <form action="/api/projects" method="post">
+        <h2 class="m-b-20"><%= title %> <button type="submit">+</button></h2>
+        <%- include('../partials/header'); %>
+        <p>
+          <input id="secret" type="text" name="secret" placeholder="secret" />
+          <label for="secret">secret</label>
+        </p>
 
-      <p>
-        <input id="id" type="text" name="id" placeholder="id" />
-        <label for="id">id</label>
-      </p>
+        <p>
+          <input id="id" type="text" name="id" placeholder="id" />
+          <label for="id">id</label>
+        </p>
 
-      <p>
-        <input id="sortOrder" type="text" name="sortOrder" placeholder="sort order" type="number" />
-        <label for="sortOrder">sort order</label>
-      </p>
+        <p>
+          <input id="sortOrder" type="text" name="sortOrder" placeholder="sort order" type="number" />
+          <label for="sortOrder">sort order</label>
+        </p>
 
-      <p>
-        <input id="active" type="text" name="active" placeholder="active" />
-        <label for="active">active</label>
-      </p>
+        <p>
+          <input id="active" type="text" name="active" placeholder="active" />
+          <label for="active">active</label>
+        </p>
 
-      <p>
-        <input id="image" type="text" name="image" placeholder="image" />
-        <label for="image">image</label>
-      </p>
+        <p>
+          <input id="image" type="text" name="image" placeholder="image" />
+          <label for="image">image</label>
+        </p>
 
-      <p>
-        <input id="heading" type="text" name="heading" placeholder="heading" />
-        <label for="heading">heading</label>
-      </p>
+        <p>
+          <input id="heading" type="text" name="heading" placeholder="heading" />
+          <label for="heading">heading</label>
+        </p>
 
-      <p>
-        <textarea id="details" type="text" name="details" placeholder="details" rows="5"></textarea>
-        <label for="details">details</label>
-      </p>
+        <p>
+          <textarea id="details" type="text" name="details" placeholder="details" rows="5"></textarea>
+          <label for="details">details</label>
+        </p>
 
-      <p>
-        <label for="category" class="category-label">category</label>
-        <select id="category" type="text" name="category">
-          <option value="">-- select --</option>
-          <option value="Animation">Animation</option>
-          <option value="App">App</option>
-          <option value="App with API">App with API</option>
-          <option value="Colour Utility">Colour Utility</option>
-          <option value="Game">Game</option>
-          <option value="Widget">Widget</option>
-        </select>
-      </p>
+        <p>
+          <label for="category" class="category-label">category</label>
+          <select id="category" type="text" name="category">
+            <option value="">-- select --</option>
+            <option value="Animation">Animation</option>
+            <option value="App">App</option>
+            <option value="App with API">App with API</option>
+            <option value="Colour Utility">Colour Utility</option>
+            <option value="Game">Game</option>
+            <option value="Widget">Widget</option>
+          </select>
+        </p>
 
-      <p>
-        <input id="languages" type="text" name="languages" placeholder="languages array" />
-        <label for="languages">languages array</label>
-      </p>
+        <p>
+          <input id="languages" type="text" name="languages" placeholder="languages array" />
+          <label for="languages">languages array</label>
+        </p>
 
-      <p>
-        <input id="play" type="text" name="infoButtons[play]" placeholder="Play url" />
-        <label for="play">play url</label>
-      </p>
+        <p>
+          <input id="play" type="text" name="infoButtons[play]" placeholder="Play url" />
+          <label for="play">play url</label>
+        </p>
 
-      <p>
-        <input id="github" type="text" name="infoButtons[github]" placeholder="Github url" />
-        <label for="github">github url</label>
-      </p>
+        <p>
+          <input id="github" type="text" name="infoButtons[github]" placeholder="Github url" />
+          <label for="github">github url</label>
+        </p>
 
-      <p>
-        <input id="code" type="text" name="infoButtons[code]" placeholder="Code url" />
-        <label for="code">code url</label>
-      </p>
+        <p>
+          <input id="code" type="text" name="infoButtons[code]" placeholder="Code url" />
+          <label for="code">code url</label>
+        </p>
 
-      <p><button type="submit">Add project</button></p>
-    </form>
+        <p><button type="submit">Add project</button></p>
+        
+      </form>
+    </main>
     <script src="../script.js"></script>
   </body>
 </html>

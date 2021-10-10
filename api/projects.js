@@ -4,37 +4,50 @@ const path = require('path');
 const Project = require('../models/project');
 const { PW, ORIGIN_URI_LIVE } = process.env;
 
-const getProjects = async () => {
+router.get('/', async (req, res, next) => {
   try {
-    return await Project.find();
+    const projects = await Project.find();
+    res.json(projects);
   } catch (err) {
-    return {
-      "error": err,
-      "message": "Error retrieving projects"
-    };
+    next(err);
   }
-}
-
-router.get('/', async (req, res) => {
-  const projects = await getProjects();
-  res.json(projects);
 });
 
-router.get('/sort-order', async (req, res) => {
-  const projects = await getProjects();
-  projects.sort((a, b) => (a.sortOrder > b.sortOrder) ? 1 : -1);
-  const imagesFolder = `${ORIGIN_URI_LIVE}/images/projects/`;
-  res.render('pages/sort-order', { projects, imagesFolder });
+router.post('/', async (req, res, next) => {
+  const languages = req.body.languages.replace(/ /g, '').split(',');
+  const values = { ...req.body, languages, date_added: new Date() };
+  if (values.secret !== PW) {
+    const err = new Error('Incorrect secret so no access available');
+    return next(err);
+  }
+  try {
+    const newProject = new Project(values);
+    const response = await newProject.save();
+    res.render('pages/success');
+  } catch (err) {
+    return next(err);
+  }
 });
 
-router.post('/sort-order', async (req, res) => {
+router.get('/sort-order', async (req, res, next) => {
+  try {
+    const projects = await Project.find();
+    projects.sort((a, b) => (a.sortOrder > b.sortOrder) ? 1 : -1);
+    const imagesFolder = `${ORIGIN_URI_LIVE}/images/projects/`;
+    res.render('pages/sort-order', { projects, imagesFolder });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/sort-order', async (req, res, next) => {
   let errorMessage = 'Error updating projects';
   const { order, secret } = req.body;
+  if (secret !== PW) {
+    const err = new Error('Incorrect secret so no access available');
+    return next(err);
+  }
   try {
-    if (secret !== PW) {
-      errorMessage = 'Incorrect secret so no access available';
-      throw new Error();
-    }
     const sortOrders = JSON.parse(order);
     const writeOperations = sortOrders.map(item => {
       return {
@@ -45,32 +58,9 @@ router.post('/sort-order', async (req, res) => {
       };
     });
     const results = await Project.bulkWrite(writeOperations);
-  } catch (err) {
-    res.status(400).json({
-      "error": err,
-      "message": errorMessage
-    });
-  }
-});
-
-router.post('/', async (req, res) => {
-  let errorMessage = 'Error creating project';
-  const languages = req.body.languages.replace(/ /g, '').split(',');
-  const values = { ...req.body, languages, date_added: new Date() };
-  try {
-    if (values.secret !== PW) {
-      errorMessage = 'Incorrect secret so no access available';
-      throw new Error();
-    }
-    const newProject = new Project(values);
-    const response = await newProject.save();
-    const projects = await getProjects();
     res.render('pages/success');
   } catch (err) {
-    res.status(400).json({
-      "error": err,
-      "message": errorMessage
-    })
+    next(err);
   }
 });
 

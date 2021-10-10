@@ -8,17 +8,26 @@ body {
   font-size: 1rem;
 }
 
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
 header > a:not(:first-child) {
   margin-left: 10px;
+  line-height: 1.5;
 }
 
 header > a:not(:last-child) {
   margin-right: 10px;
+  line-height: 1.5;
 }
 
 form {
   width: calc(100% - 60px);
-  max-width: 400px;
+  max-width: 600px;
 }
 
 form > p {
@@ -32,7 +41,7 @@ input[type=text], button, textarea, select {
 }
 
 input[type=text], textarea, select {
-  width: 100%;
+  width: calc(100% - 20px)
 }
 
 textarea {
@@ -95,6 +104,10 @@ button {
 
 .m-b-20 {
   margin-bottom: 20px;
+}
+
+.m-b-30 {
+  margin-bottom: 30px;
 }
 
 .m-l-20 {

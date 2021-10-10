@@ -18,7 +18,7 @@ let order = [];
 
 const updateProps = () => {
   order = sortable.toArray().map((id, index) => {
-    const active = $(`#project-${id} > input[type=checkbox]`).checked;
+    const active = $(`#project-${id} input[type=checkbox]`).checked;
     return { id, active, sortOrder:index + 1};
   });
   $('#order').value = JSON.stringify(order);
