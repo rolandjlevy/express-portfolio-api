@@ -35,6 +35,9 @@ router.post('/sort-order', async (req, res) => {
       $set: { sortOrder: 33 }
     });
     console.log(result);
+    // https://stackoverflow.com/questions/65343304/mongoose-updatemany-by-id-using-node
+    // https://docs.mongodb.com/manual/reference/method/db.collection.bulkWrite/
+    
     // const results = await Project.updateMany(
     //   { active: 1 },
     //   $set: { sortOrder: 33 }
