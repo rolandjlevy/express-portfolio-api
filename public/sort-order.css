@@ -15,6 +15,7 @@
   padding-left: 0;
   margin-top: 1rem;
   margin-bottom: 1.5rem;
+  box-shadow: 0px 5px 20px -10px grey;
 }
 
 .list-group > div:hover {
