@@ -1,13 +1,12 @@
+<% const title = 'Success'; %>
 <!DOCTYPE html>
 <html>
   <head>
-    <%- include('../partials/head', { title: 'Success' }); %>
+    <%- include('../partials/head', { title }); %>
   </head>
   <body>
-    <h2>Success</h2>
-      <p>
-        <a href="/">Add a project</a> | <a href="/api/projects">View JSON</a>
-      </p>
+    <h2 class="m-b-20"><%= title %></h2>
+      <%- include('../partials/header'); %>
     <script src="../script.js"></script>
   </body>
 </html>

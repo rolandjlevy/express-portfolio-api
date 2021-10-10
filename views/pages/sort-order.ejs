@@ -1,24 +1,40 @@
+<% const title = 'Update sort order'; %>
 <!DOCTYPE html>
 <html>
   <head>
-    <%- include('../partials/head', { title: 'Update sort order' }); %>
+    <%- include('../partials/head', { title }); %>
   <link href="../../sort-order.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <form action="/api/projects/sort-order" method="post">
-      <h2>Update sort order <button type="submit">↻</button></h2>
+    <form action="/api/projects/sort-order" method="post" id="sort-order-form">
+      <h2 class="m-b-20"><%= title %> <button class="update-btn" type="submit" disabled>↻</button></h2>
+      <%- include('../partials/header'); %>
+      <p>
+        <input id="secret" type="text" name="secret" placeholder="secret" />
+        <label for="secret">secret</label>
+      </p>
       <section id="sortableList" class="list-group">
         <% projects.forEach((project, index) => { %>
-          <div data-id="<%= project._id %>">
+          <div id="project-<%= project._id %>" data-id="<%= project._id %>">
+            <i class="fas fa-arrows-alt handle"></i>
             <img src="<%= `${imagesFolder}${project.image}` %>" />
             <%= project.heading %>
+            <input type="checkbox"<%= project.active ? ' checked' : ''%> class="default" />
+
+           <!-- 
+           <label class="custom-checkbox">
+              <input type="checkbox" checked />
+              active
+              <i class="fas fa-check-square checked"></i>
+              <i class="fas fa-square unchecked"></i>
+            </label>
+            -->
           </div>
         <% }); %>
       </section>
-      <input id="order" name="order" type="text" />
-      <button type="submit" class="m-b-20">Update</button>
+      <input id="order" name="order" type="hidden" />
+      <button class="update-btn" type="submit" class="m-b-20" disabled>Update</button><span class="m-l-20" id="update-status"></span>
     </form>
-    <a href="/">Add a project</a> | <a href="/api/projects">View JSON</a>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="../../sort-order.js"></script>
   </body>

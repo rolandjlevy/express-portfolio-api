@@ -8,8 +8,12 @@ body {
   font-size: 1rem;
 }
 
-h2 {
-  margin-bottom: 30px;
+header > a:not(:first-child) {
+  margin-left: 10px;
+}
+
+header > a:not(:last-child) {
+  margin-right: 10px;
 }
 
 form {
@@ -22,12 +26,12 @@ form > p {
   margin: 20px 0;
 }
 
-input, button, textarea, select {
+input[type=text], button, textarea, select {
   padding: 5px 10px;
   font-size: 1rem;
 }
 
-input, textarea, select {
+input[type=text], textarea, select {
   width: 100%;
 }
 
@@ -35,7 +39,7 @@ textarea {
   display: block;
 }
 
-input + label,
+input[type=text] + label,
 textarea + label {
   position: absolute;
   text-transform: uppercase;
@@ -44,7 +48,7 @@ textarea + label {
   color: #777;
 }
 
-input + label {
+input[type=text] + label {
   transform: translate(12px, -25px);
 }
 
@@ -54,19 +58,18 @@ input + label {
   text-transform: uppercase;
   font-size: 0.75rem;
   color: #333;
-  /* margin-bottom: 5px; */
 }
 
 textarea + label {
   transform: translate(11px, -106px);
 }
 
-input:placeholder-shown,
+input[type=text]:placeholder-shown,
 textarea:placeholder-shown {
   text-transform: uppercase;
 }
 
-input:not(:placeholder-shown) + label {
+input[type=text]:not(:placeholder-shown) + label {
   transform: translate(0, -50px);
   font-size: 0.75rem;
   color: #333;
@@ -88,4 +91,12 @@ button {
   cursor: pointer;
   background: #333;
   color: #fff;
+}
+
+.m-b-20 {
+  margin-bottom: 20px;
+}
+
+.m-l-20 {
+  margin-left: 20px;
 }

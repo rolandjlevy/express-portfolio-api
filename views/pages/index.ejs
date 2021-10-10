@@ -1,49 +1,51 @@
+<% const title = 'Add a project'; %>
 <!DOCTYPE html>
 <html>
   <head>
-    <%- include('../partials/head', { title: 'Add a project' }); %>
+    <%- include('../partials/head', { title }); %>
   </head>
   <body>
     <form action="/api/projects" method="post">
-    <h2>Add a project <button type="submit">+</button></h2>
+      <h2 class="m-b-20"><%= title %> <button type="submit">+</button></h2>
+      <%- include('../partials/header'); %>
       <p>
-        <input id="secret" name="secret" placeholder="secret" />
+        <input id="secret" type="text" name="secret" placeholder="secret" />
         <label for="secret">secret</label>
       </p>
 
       <p>
-        <input id="id" name="id" placeholder="id" />
+        <input id="id" type="text" name="id" placeholder="id" />
         <label for="id">id</label>
       </p>
 
       <p>
-        <input id="sortOrder" name="sortOrder" placeholder="sort order" type="number" />
+        <input id="sortOrder" type="text" name="sortOrder" placeholder="sort order" type="number" />
         <label for="sortOrder">sort order</label>
       </p>
 
       <p>
-        <input id="active" name="active" placeholder="active" />
+        <input id="active" type="text" name="active" placeholder="active" />
         <label for="active">active</label>
       </p>
 
       <p>
-        <input id="image" name="image" placeholder="image" />
+        <input id="image" type="text" name="image" placeholder="image" />
         <label for="image">image</label>
       </p>
 
       <p>
-        <input id="heading" name="heading" placeholder="heading" />
+        <input id="heading" type="text" name="heading" placeholder="heading" />
         <label for="heading">heading</label>
       </p>
 
       <p>
-        <textarea id="details" name="details" placeholder="details" rows="5"></textarea>
+        <textarea id="details" type="text" name="details" placeholder="details" rows="5"></textarea>
         <label for="details">details</label>
       </p>
 
       <p>
         <label for="category" class="category-label">category</label>
-        <select id="category" name="category">
+        <select id="category" type="text" name="category">
           <option value="">-- select --</option>
           <option value="Animation">Animation</option>
           <option value="App">App</option>
@@ -55,28 +57,27 @@
       </p>
 
       <p>
-        <input id="languages" name="languages" placeholder="languages array" />
+        <input id="languages" type="text" name="languages" placeholder="languages array" />
         <label for="languages">languages array</label>
       </p>
 
       <p>
-        <input id="play" name="infoButtons[play]" placeholder="Play url" />
+        <input id="play" type="text" name="infoButtons[play]" placeholder="Play url" />
         <label for="play">play url</label>
       </p>
 
       <p>
-        <input id="github" name="infoButtons[github]" placeholder="Github url" />
+        <input id="github" type="text" name="infoButtons[github]" placeholder="Github url" />
         <label for="github">github url</label>
       </p>
 
       <p>
-        <input id="code" name="infoButtons[code]" placeholder="Code url" />
+        <input id="code" type="text" name="infoButtons[code]" placeholder="Code url" />
         <label for="code">code url</label>
       </p>
 
       <p><button type="submit">Add project</button></p>
     </form>
-    <a href="/api/projects/sort-order">Change sort order</a> | <a href="/api/projects">View JSON</a>
     <script src="../script.js"></script>
   </body>
 </html>

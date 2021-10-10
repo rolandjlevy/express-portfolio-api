@@ -26,12 +26,12 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  padding: .75rem 1.25rem;
+  justify-content: flex-start;
+  padding: 0.5rem 0.75rem;
   margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid rgba(0,0,0,.125);
   border-radius: 0;
-  cursor: move;
 }
 
 .list-group > div:first-child {
@@ -48,7 +48,7 @@
   width: 30px;
   height: 30px;
   object-fit: cover;
-  margin-right: 10px;
+  margin: 0 10px;
   border: 1px solid #ccc;
 }
 
@@ -69,6 +69,36 @@ h6 {
   color: black;
 }
 
-.m-b-20 {
-  margin-bottom: 20px;
+.update-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.handle {
+  cursor: grab;
+}
+
+input[type=checkbox].default {
+  width: auto;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  margin-right: 0.75rem;
+}
+
+.custom-checkbox {
+  cursor: pointer;
+}
+
+.custom-checkbox > input[type="checkbox"],
+.custom-checkbox > .checked {
+  display: none;
+}
+
+.custom-checkbox > input[type="checkbox"]:checked ~ .checked {
+  display: inline-block;
+}
+
+.custom-checkbox > input[type="checkbox"]:checked ~ .unchecked {
+  display: none;
 }

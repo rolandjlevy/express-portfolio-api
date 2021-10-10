@@ -22,63 +22,54 @@ router.get('/', async (req, res) => {
 
 router.get('/sort-order', async (req, res) => {
   const projects = await getProjects();
+  projects.sort((a, b) => (a.sortOrder > b.sortOrder) ? 1 : -1);
   const imagesFolder = `${ORIGIN_URI_LIVE}/images/projects/`;
   res.render('pages/sort-order', { projects, imagesFolder });
 });
 
 router.post('/sort-order', async (req, res) => {
+  let errorMessage = 'Error updating projects';
+  const { order, secret } = req.body;
   try {
-    const { order } = req.body;
+    if (secret !== PW) {
+      errorMessage = 'Incorrect secret so no access available';
+      throw new Error();
+    }
     const sortOrders = JSON.parse(order);
-    const result = await Project.updateOne(
-      { _id: '6160ba763014a89da53316bd' }, {
-      $set: { sortOrder: 33 }
+    const writeOperations = sortOrders.map(item => {
+      return {
+        updateOne: {
+          filter: { _id: item.id },
+          update: { sortOrder: item.sortOrder, active: item.active }
+        }
+      };
     });
-    console.log(result);
-    // https://stackoverflow.com/questions/65343304/mongoose-updatemany-by-id-using-node
-    // https://docs.mongodb.com/manual/reference/method/db.collection.bulkWrite/
-    
-    // const results = await Project.updateMany(
-    //   { active: 1 },
-    //   $set: { sortOrder: 33 }
-    // )
-    // const projects = await getProjects();
-    // projects.forEach(project => {
-    // const found = sortOrders.find(item => item.id === project._id.valueOf());
-      // console.log(found)
-      // project.updateOne({
-      //   _id: found.id
-      // }, {
-      //   $set: {
-      //     sortOrder: found.sortOrder
-      //   }
-      // });
-    // });
+    const results = await Project.bulkWrite(writeOperations);
   } catch (err) {
-    return {
+    res.status(400).json({
       "error": err,
-      "message": "Error updating projects"
-    };
+      "message": errorMessage
+    });
   }
 });
 
 router.post('/', async (req, res) => {
+  let errorMessage = 'Error creating project';
   const languages = req.body.languages.replace(/ /g, '').split(',');
   const values = { ...req.body, languages, date_added: new Date() };
-  if (values.secret !== PW) {
-    res.status(400).json({
-      "message": "Error: no access available"
-    });
-  }
-  const newProject = new Project(values);
   try {
+    if (values.secret !== PW) {
+      errorMessage = 'Incorrect secret so no access available';
+      throw new Error();
+    }
+    const newProject = new Project(values);
     const response = await newProject.save();
     const projects = await getProjects();
     res.render('pages/success');
   } catch (err) {
     res.status(400).json({
       "error": err,
-      "message": "Error creating project"
+      "message": errorMessage
     })
   }
 });

@@ -2,7 +2,7 @@ const $ = (el) => document.querySelector(el);
 
 const project = {
   id: 'which-city',
-  sortOrder: 33,
+  sortOrder: 40,
   active: 1,
   image: 'louvre.jpg',
   heading: 'Quiz game',
