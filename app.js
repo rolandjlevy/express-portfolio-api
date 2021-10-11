@@ -34,9 +34,9 @@ app.get('/', (req, res) => {
 /*////////////////*/
 
 app.use((req, res, next) => {
-    const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // wildcard route throws 302 error (temporary redirect)
@@ -48,17 +48,18 @@ app.get('*', (req, res, next) => {
 
 // middleware for handing errors
 app.use((err, req, res, next) => {
-    const status = err.statusCode || 500;
-    const message = err.message || 'unknown';
-    if (err.statusCode === 302) {
-      return res.status(302).redirect('/not-found');
-    }
-    return res.status(status).render('pages/error', { error:err.toString() })
+  const status = err.statusCode || 500;
+  const message = err.message || 'unknown';
+  if (err.statusCode === 302) {
+    return res.status(302).redirect('/not-found');
+  }
+  return res.status(status).render('pages/error', { error:err.toString() })
 });
 
 // page not found (404)
 app.get('/not-found', (req, res) => {
-  res.status(404).render('pages/not-found');
+  const { originalUrl } = req;
+  res.status(404).render('pages/not-found', { originalUrl });
 });
 
 module.exports = app;

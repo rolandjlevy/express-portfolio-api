@@ -23,7 +23,8 @@ router.post('/', async (req, res, next) => {
   try {
     const newProject = new Project(values);
     const response = await newProject.save();
-    res.render('pages/success');
+    const message = `The project named ${heading} has been saved`;
+    res.render('pages/success', { message });
   } catch (err) {
     return next(err);
   }
@@ -58,7 +59,8 @@ router.post('/sort-order', async (req, res, next) => {
       };
     });
     const results = await Project.bulkWrite(writeOperations);
-    res.render('pages/success');
+    const message = `The sort order of the projects has been update`;
+    res.render('pages/success', { message });
   } catch (err) {
     next(err);
   }
