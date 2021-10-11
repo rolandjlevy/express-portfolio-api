@@ -17,7 +17,7 @@ router.post('/', async (req, res, next) => {
   const languages = req.body.languages.replace(/ /g, '').split(',');
   const values = { ...req.body, languages, date_added: new Date() };
   if (values.secret !== PW) {
-    const err = new Error('Incorrect secret so no access available');
+    const err = new Error('Incorrect secret: no access available');
     return next(err);
   }
   try {
@@ -45,7 +45,7 @@ router.post('/sort-order', async (req, res, next) => {
   let errorMessage = 'Error updating projects';
   const { order, secret } = req.body;
   if (secret !== PW) {
-    const err = new Error('Incorrect secret so no access available');
+    const err = new Error('Incorrect secret: no access available');
     return next(err);
   }
   try {
@@ -54,12 +54,15 @@ router.post('/sort-order', async (req, res, next) => {
       return {
         updateOne: {
           filter: { _id: item.id },
-          update: { sortOrder: item.sortOrder, active: item.active }
+          update: { 
+            sortOrder: item.sortOrder, 
+            active: item.active,
+          }
         }
       };
     });
     const results = await Project.bulkWrite(writeOperations);
-    const message = `The sort order of the projects has been update`;
+    const message = `The sort order of the projects has been updated`;
     res.render('pages/success', { message });
   } catch (err) {
     next(err);

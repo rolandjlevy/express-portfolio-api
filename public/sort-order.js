@@ -14,12 +14,11 @@ const sortable = new Sortable(sortableList, {
   onSort: function (e) { updateProps(); },
 });
 
-let order = [];
-
 const updateProps = () => {
-  order = sortable.toArray().map((id, index) => {
+  const order = sortable.toArray().map((id, index) => {
     const active = $(`#project-${id} input[type=checkbox]`).checked;
-    return { id, active, sortOrder:index + 1};
+    const category = $(`#project-${id} input[type=hidden]`).value;
+    return { id, active, sortOrder:index + 1, category};
   });
   $('#order').value = JSON.stringify(order);
   toggleUpdateButtons(false);
