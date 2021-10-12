@@ -1,8 +1,8 @@
 const $ = (el) => document.querySelector(el);
 const $$ = (el) => document.querySelectorAll(el);
-const statusMessage = (msg) => $('#update-status').textContent = msg;
-const toggleUpdateButtons = (state) => {
+const setSubmitState = (state, msg) => {
   $$('.update-btn').forEach(item => item.disabled = state);
+  $('#update-status').textContent = msg;
 }
 
 const sortable = new Sortable(sortableList, {
@@ -21,13 +21,11 @@ const updateProps = () => {
     return { id, active, sortOrder:index + 1, category};
   });
   $('#order').value = JSON.stringify(order);
-  toggleUpdateButtons(false);
-  statusMessage('Changes pending...');  
+  setSubmitState(false, 'Changes pending...');
 }
 
 $('#sort-order-form').addEventListener('submit', (e) => {
-  toggleUpdateButtons(true);
-  statusMessage('');
+  setSubmitState(true, '');
 })
 
 $$('input[type=checkbox]').forEach(item => {
