@@ -109,3 +109,9 @@ h6 {
 .active-state > input[type="checkbox"]:checked ~ .unchecked {
   display: none;
 }
+
+@media only screen and (max-width: 480px) {
+  .active-state > span {
+    display: none;
+  }
+}

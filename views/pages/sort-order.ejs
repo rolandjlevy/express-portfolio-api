@@ -19,12 +19,12 @@
             <div id="project-<%= project._id %>" data-id="<%= project._id %>">
               <input type="hidden" class="category" value="<%= project.category %>" />
               <i class="fas fa-arrows-alt handle"></i>
-              <img src="<%= `${imagesFolder}${project.image}` %>" />
+              <img src="<%= `${imagesFolder}${project.image}` %>" alt="<%= project.details %>" title="<%= project.details %>"/>
               <%= project.heading %>
 
               <label class="active-state">
                 <input type="checkbox"<%= project.active ? ' checked' : ''%> />
-                active
+                <span>active</span>
                 <i class="fas fa-check-square checked"></i>
                 <i class="fas fa-square unchecked"></i>
               </label>
