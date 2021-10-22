@@ -31,3 +31,16 @@ $('#sort-order-form').addEventListener('submit', (e) => {
 $$('input[type=checkbox]').forEach(item => {
   item.addEventListener('click', (e) => updateProps());
 });
+
+tippy('.icon', {
+  content(reference) {
+    const id = reference.getAttribute('data-template');
+    const template = document.getElementById(id);
+    return template.innerHTML;
+  },
+  placement: 'top',
+  animation: 'fade',
+  allowHTML: true,
+  theme: 'material',
+  maxWidth: 300,
+});

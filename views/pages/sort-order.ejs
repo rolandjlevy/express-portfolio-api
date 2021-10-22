@@ -8,7 +8,7 @@
   <body>
     <main class="container">
       <form action="/api/projects/sort-order" method="post" id="sort-order-form">
-        <h2 class="m-b-20"><%= title %> <button class="update-btn" type="submit" disabled>↻</button></h2>
+        <h2 class="m-b-20"><%= title %> <button class="btn update-btn" type="submit" disabled>↻</button></h2>
         <%- include('../partials/header'); %>
         <p>
           <input id="secret" type="text" name="secret" placeholder="secret" />
@@ -19,8 +19,12 @@
             <div id="project-<%= project._id %>" data-id="<%= project._id %>">
               <input type="hidden" class="category" value="<%= project.category %>" />
               <i class="fas fa-arrows-alt handle"></i>
-              <img src="<%= `${imagesFolder}${project.image}` %>" alt="<%= project.details %>" title="<%= project.details %>"/>
-              <%= project.heading %>
+              <img class="icon" data-template="<%= project.image %>" src="<%= `${imagesFolder}${project.image}` %>" alt="<%= project.details %>" />
+              <div id="<%= project.image %>" style="display: none;">
+                <strong>Details:</strong> <span style="color: #ccc;"><%= project.details %></span>
+              </div>
+              <a href="<%= project.infoButtons.play %>" target="_blank">
+              <%= project.heading %></a> <i>⇗</i>
 
               <label class="active-state">
                 <input type="checkbox"<%= project.active ? ' checked' : ''%> />
@@ -36,6 +40,8 @@
         <button class="update-btn" type="submit" class="m-b-20" disabled>Update</button><span class="m-l-20" id="update-status"></span>
       </form>
     </main>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="../../sort-order.js"></script>
   </body>
