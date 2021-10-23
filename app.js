@@ -5,7 +5,7 @@ const app = express();
 const { 
   ORIGIN_URI_DEV, 
   ORIGIN_URI_LIVE,
-  ORIGIN_URI_SLIDERS
+  ORIGIN_URI_SLIDERS,ORIGIN_URI_SLIDERS_TEMP
 } = process.env;
 
 const ejs = require('ejs');
