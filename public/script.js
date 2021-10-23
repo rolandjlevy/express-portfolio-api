@@ -3,7 +3,7 @@ const $ = (el) => document.querySelector(el);
 const project = {
   id: 'which-city',
   sortOrder: 40,
-  active: 1,
+  active: 0,
   image: 'louvre.jpg',
   heading: 'Quiz game',
   details: 'Which City? involves browsing photos and trying to guess the city.',
@@ -15,7 +15,7 @@ const project = {
   }
 }
 
-const secret = '';
+const secret = 'Kadampa13!';
 $('#secret').value = secret;
 
 if (secret.length) {

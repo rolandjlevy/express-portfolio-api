@@ -2,9 +2,49 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const Project = require('../models/project');
+const Slider = require('../models/slider');
 const { PW, ORIGIN_URI_LIVE } = process.env;
 
-router.get('/', async (req, res, next) => {
+/////////////
+// Sliders //
+/////////////
+
+router.get('/slider', async (req, res, next) => {
+  res.render('pages/slider');
+});
+
+router.get('/sliders', async (req, res, next) => {
+  try {
+    const sliders = await Slider.find();
+    res.json(sliders);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/add-slider-score', async (req, res, next) => {
+  const { secret, ...values} = req.body;
+  if (secret !== PW) {
+    const err = new Error('Incorrect secret: no access available');
+    return next(err);
+  }
+  const sliders = await Slider.find();
+  const valuesWithId = { ...values, id:sliders.length };
+  try {
+    const newSliderScore = new Slider(valuesWithId);
+    const response = await newSliderScore.save();
+    const message = `New score for sliders has been saved`;
+    res.render('pages/success', { message });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+//////////////
+// Projects //
+//////////////
+
+router.get('/projects', async (req, res, next) => {
   try {
     const projects = await Project.find();
     res.json(projects);
@@ -13,7 +53,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/add-project', async (req, res, next) => {
   const languages = req.body.languages.replace(/ /g, '').split(',');
   const values = { ...req.body, languages, date_added: new Date() };
   if (values.secret !== PW) {
@@ -23,12 +63,16 @@ router.post('/', async (req, res, next) => {
   try {
     const newProject = new Project(values);
     const response = await newProject.save();
-    const message = `The project named ${heading} has been saved`;
+    const message = `The project named '${values.heading}' has been saved`;
     res.render('pages/success', { message });
   } catch (err) {
     return next(err);
   }
 });
+
+////////////////
+// Sort order //
+////////////////
 
 router.get('/sort-order', async (req, res, next) => {
   try {

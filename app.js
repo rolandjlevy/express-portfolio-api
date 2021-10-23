@@ -2,7 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const app = express();
-const { ORIGIN_URI_DEV, ORIGIN_URI_LIVE } = process.env;
+const { 
+  ORIGIN_URI_DEV, 
+  ORIGIN_URI_LIVE,
+  ORIGIN_URI_SLIDERS
+} = process.env;
 
 const ejs = require('ejs');
 app.set('view engine', 'ejs');
@@ -13,11 +17,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-const projects = require('./api/projects');
-app.use('/api/projects', projects);
+const routes = require('./api/routes');
+app.use('/api/routes', routes);
 
 app.use((req, res, next) => {
-  let origins = [ORIGIN_URI_DEV, ORIGIN_URI_LIVE];
+  let origins = [ORIGIN_URI_DEV, ORIGIN_URI_LIVE, ORIGIN_URI_SLIDERS];
   if (origins.includes(req.query.origin)) {
     res.header("Access-Control-Allow-Origin", req.query.origin);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
