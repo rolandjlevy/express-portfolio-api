@@ -29,9 +29,8 @@ router.post('/add-slider-score', async (req, res, next) => {
     return next(err);
   }
   const sliders = await Slider.find();
-  const valuesWithId = { ...values, id:sliders.length };
   try {
-    const newSliderScore = new Slider(valuesWithId);
+    const newSliderScore = new Slider(values);
     const response = await newSliderScore.save();
     const message = `New score for sliders has been saved`;
     res.render('pages/success', { message });

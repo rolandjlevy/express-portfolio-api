@@ -15,7 +15,7 @@ const project = {
   }
 }
 
-const secret = 'Kadampa13!';
+const secret = '';
 $('#secret').value = secret;
 
 if (secret.length) {
