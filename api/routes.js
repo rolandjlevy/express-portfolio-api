@@ -24,7 +24,6 @@ router.get('/sliders', async (req, res, next) => {
 
 router.post('/add-slider-score', async (req, res, next) => {
   const { secret, ...values} = req.body;
-  console.log('req.body: ', req.body);
   if (secret !== PW) {
     const err = new Error('Incorrect secret: no access available');
     return next(err);
