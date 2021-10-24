@@ -1,0 +1,38 @@
+<% const title = 'Add a solitaire score'; %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head', { title }); %>
+  </head>
+  <body>
+    <main class="container">
+      <form action="/api/routes/add-solitaire-score" method="post">
+        <h2 class="m-b-20"><%= title %> <button type="submit">+</button></h2>
+        <%- include('../partials/header'); %>
+        
+        <p>
+          <input id="secret" type="text" name="secret" placeholder="secret" />
+          <label for="secret">secret</label>
+        </p>
+        
+        <p>
+          <input id="id" type="number" name="id" placeholder="id" />
+          <label for="id">id</label>
+        </p>
+
+        <p>
+          <input id="user_name" type="text" name="user_name" placeholder="name" />
+          <label for="user_name">name</label>
+        </p>
+
+        <p>
+          <input id="score" type="number" name="score" placeholder="score" />
+          <label for="score">score</label>
+        </p>
+
+        <p><button type="submit">Add solitaire score</button></p>
+        
+      </form>
+    </main>
+  </body>
+</html>

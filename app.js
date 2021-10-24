@@ -5,7 +5,8 @@ const app = express();
 const { 
   ORIGIN_URI_DEV, 
   ORIGIN_URI_LIVE,
-  ORIGIN_URI_SLIDERS,ORIGIN_URI_SLIDERS_TEMP
+  ORIGIN_URI_SLIDERS,
+  ORIGIN_URI_SLIDERS_TEMP
 } = process.env;
 
 const ejs = require('ejs');
@@ -21,7 +22,7 @@ const routes = require('./api/routes');
 app.use('/api/routes', routes);
 
 app.use((req, res, next) => {
-  let origins = [ORIGIN_URI_DEV, ORIGIN_URI_LIVE, ORIGIN_URI_SLIDERS];
+  let origins = [ORIGIN_URI_DEV, ORIGIN_URI_LIVE, ORIGIN_URI_SLIDERS, ORIGIN_URI_SLIDERS_TEMP];
   if (origins.includes(req.query.origin)) {
     res.header("Access-Control-Allow-Origin", req.query.origin);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

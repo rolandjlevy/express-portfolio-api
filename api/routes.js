@@ -3,14 +3,48 @@ const router = express.Router();
 const path = require('path');
 const Project = require('../models/project');
 const Slider = require('../models/slider');
+const Solitaire = require('../models/solitaire');
 const { PW, ORIGIN_URI_LIVE } = process.env;
+
+///////////////
+// Solitaire //
+///////////////
+
+router.get('/solitaire-page', async (req, res, next) => {
+  res.render('pages/solitaire-page');
+});
+
+router.get('/solitaire', async (req, res, next) => {
+  try {
+    const solitaire = await Solitaire.find();
+    res.json(solitaire);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/add-solitaire-score', async (req, res, next) => {
+  const { secret, ...values} = req.body;
+  if (secret !== PW) {
+    const err = new Error('Incorrect secret: no access available');
+    return next(err);
+  }
+  try {
+    const newSolitaireScore = new Solitaire(values);
+    const response = await newSolitaireScore.save();
+    const message = `New score for solitaire has been saved`;
+    res.render('pages/success', { message });
+  } catch (err) {
+    return next(err);
+  }
+});
 
 /////////////
 // Sliders //
 /////////////
 
-router.get('/slider', async (req, res, next) => {
-  res.render('pages/slider');
+router.get('/slider-page', async (req, res, next) => {
+  res.render('pages/slider-page');
 });
 
 router.get('/sliders', async (req, res, next) => {
@@ -28,7 +62,6 @@ router.post('/add-slider-score', async (req, res, next) => {
     const err = new Error('Incorrect secret: no access available');
     return next(err);
   }
-  const sliders = await Slider.find();
   try {
     const newSliderScore = new Slider(values);
     const response = await newSliderScore.save();

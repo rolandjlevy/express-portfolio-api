@@ -35,12 +35,12 @@ form > p {
   margin: 20px 0;
 }
 
-input[type=text], button, textarea, select {
+input, button, textarea, select {
   padding: 5px 10px;
   font-size: 1rem;
 }
 
-input[type=text], textarea, select {
+input, textarea, select {
   width: calc(100% - 20px)
 }
 
@@ -48,7 +48,7 @@ textarea {
   display: block;
 }
 
-input[type=text] + label,
+input + label,
 textarea + label {
   position: absolute;
   text-transform: uppercase;
@@ -57,7 +57,7 @@ textarea + label {
   color: #777;
 }
 
-input[type=text] + label {
+input + label {
   transform: translate(12px, -25px);
 }
 
@@ -73,12 +73,12 @@ textarea + label {
   transform: translate(11px, -106px);
 }
 
-input[type=text]:placeholder-shown,
+input:placeholder-shown,
 textarea:placeholder-shown {
   text-transform: uppercase;
 }
 
-input[type=text]:not(:placeholder-shown) + label {
+input:not(:placeholder-shown) + label {
   transform: translate(0, -50px);
   font-size: 0.75rem;
   color: #333;
