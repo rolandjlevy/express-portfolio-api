@@ -1,6 +1,6 @@
 # Portfolio projects API
 
-> API for portfolio website with endpoints for adding projects and sorting the order of the projects and toggling their visibility. Built with Node, Express, EJS and MongoDb atlas.
+> API for portfolio website. Endpoints for adding projects, order sorting and toggling visibility. Built with Node, Express, EJS and MongoDb atlas.
 
 ### Links
 
