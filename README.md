@@ -1,6 +1,11 @@
-# Portfolio projects API
+# Projects API
 
-> API for portfolio website. Endpoints for adding projects, order sorting and toggling visibility. Built with Node, Express, EJS and MongoDb atlas.
+### API for portfolio website, Sliders game and Solitaire game
+
+> Built with Node, Express, EJS and MongoDb atlas.
+
+- For the portfolio website it includes endpoints for adding projects, changing sort order and toggling visibility.
+- For the Sliders and Solitaire games it includes endpoints for adding scores to the leaderboard.
 
 ### Links
 
