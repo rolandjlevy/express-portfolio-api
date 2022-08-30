@@ -61,6 +61,11 @@ input + label {
   transform: translate(12px, -25px);
 }
 
+input:read-only {
+  background: #ddd;
+  border: 1px solid #999;
+}
+
 .category-label {
   display: inline-block;
   transform: translate(0, -5px);
@@ -70,7 +75,7 @@ input + label {
 }
 
 textarea + label {
-  transform: translate(11px, -106px);
+  transform: translate(11px, -66px);
 }
 
 input:placeholder-shown,
@@ -85,7 +90,7 @@ input:not(:placeholder-shown) + label {
 }
 
 textarea:not(:placeholder-shown) + label {
-  transform: translate(0, -135px);
+  transform: translate(0, -90px);
   font-size: 0.75rem;
   color: #333;
 }
@@ -93,13 +98,21 @@ textarea:not(:placeholder-shown) + label {
 textarea {
   overflow-y: auto;
   resize: none;
-  height: 100px;
+  height: 60px;
 }
 
 button {
   cursor: pointer;
   background: #333;
   color: #fff;
+}
+
+.m-l-5 {
+  margin-left: 5px;
+}
+
+.m-l-20 {
+  margin-left: 20px;
 }
 
 .m-b-20 {

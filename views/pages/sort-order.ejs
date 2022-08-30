@@ -8,7 +8,7 @@
   <body>
     <main class="container">
       <form action="/api/routes/sort-order" method="post" id="sort-order-form">
-        <h2 class="m-b-20"><%= title %> <button class="btn update-btn" type="submit" disabled>↻</button></h2>
+        <h2 class="m-b-20"><%= title %> <button class="btn update-btn" type="submit" disabled><i class='fas fa-save'></i></button></h2>
         <%- include('../partials/header'); %>
         <p>
           <input id="secret" type="text" name="secret" placeholder="secret" />
@@ -24,8 +24,9 @@
                 <strong>Details:</strong> <span style="color: #ccc;"><%= project.details %></span>
               </div>
               <a href="<%= project.infoButtons.play %>" target="_blank">
-              <%= project.heading %></a> <i>⇗</i>
+              <%= project.heading %></a> <i class="fas fa-external-link-alt m-l-5"></i>
 
+              <a href="/api/routes/update-project?id=<%= project._id %>" class="m-l-20">Edit <i class="far fa-edit"></i></a>
               <label class="active-state">
                 <input type="checkbox"<%= project.active ? ' checked' : ''%> />
                 <span>active</span>

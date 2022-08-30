@@ -87,7 +87,7 @@ router.get('/projects', async (req, res, next) => {
 
 router.post('/add-project', async (req, res, next) => {
   const languages = req.body.languages.replace(/ /g, '').split(',');
-  const values = { ...req.body, languages, date_added: new Date() };
+  const values = { ...req.body, languages };
   if (values.secret !== PW) {
     const err = new Error('Incorrect secret: no access available');
     return next(err);
@@ -102,6 +102,58 @@ router.post('/add-project', async (req, res, next) => {
   }
 });
 
+router.get('/update-project', async (req, res, next) => {
+  const _id = req.query.id;
+  try {
+    const projectExists = await Project.countDocuments({ _id });
+    if (_id && projectExists) {
+    console.log({ projectExists, _id });
+      try {
+        Project.findOne({ _id })
+        .then(data => {
+          if (!data) {
+            const error = {
+              message: `Project entitled "${data.heading}" not found`,
+            }
+            return next(error);
+          }
+          res.status(200).render('pages/update-project', { 
+            _id,
+            data
+          });
+        })
+        .catch((err) => {
+          return next(err);
+        });
+      } catch (err) {
+        return next(err);
+      }
+    }
+  } catch (err) {
+    return next(err);
+  }
+});
+
+router.post('/update-project', async (req, res, next) => {
+  const _id = req.query.id;
+  const languages = req.body.languages.replace(/ /g, '').split(',');
+  const values = { ...req.body, languages };
+  
+  if (values.secret !== PW) {
+    const err = new Error('Incorrect secret: no access available');
+    return next(err);
+  }
+
+  try {
+    await Project.findByIdAndUpdate(_id, values);  
+    const message = `The project named '${values.heading}' has been updated`;
+    res.status(200).render('pages/success', { message });
+  } catch (err) {
+    return next(err);
+  }
+  
+});
+
 ////////////////
 // Sort order //
 ////////////////
@@ -113,7 +165,7 @@ router.get('/sort-order', async (req, res, next) => {
     const imagesFolder = `${ORIGIN_URI_LIVE}/images/projects/`;
     res.render('pages/sort-order', { projects, imagesFolder });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 });
 

@@ -1,0 +1,91 @@
+<% const title = 'Update project'; %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head', { title }); %>
+  </head>
+  <body>
+    <main class="container">
+      <form action="/api/routes/update-project?id=<%= data._id %>" method="post">
+        <h2 class="m-b-20">Update: <%= data.heading %> <button type="submit"><i class='fas fa-save'></i></button></h2>
+        <%- include('../partials/header'); %>
+        <p>
+          <input id="secret" type="text" name="secret" placeholder="secret" />
+          <label for="secret">secret</label>
+        </p>
+
+        <p>
+          <input id="id" type="text" name="id" placeholder="id" value="<%= data.id %>" />
+          <label for="id">id</label>
+        </p>
+
+        <p>
+          <input id="active" type="number" name="active" placeholder="active" value="<%= data.active %>" min="0" max="1" />
+          <label for="active">active</label>
+        </p>
+
+        <p>
+          <input id="heading" type="text" name="heading" placeholder="heading" value="<%= data.heading %>" />
+          <label for="heading">heading</label>
+        </p>
+
+        <p>
+          <textarea id="details" type="text" name="details" placeholder="details" rows="4"><%= data.details %></textarea>
+          <label for="details">details</label>
+        </p>
+
+        <p>
+          <label for="category" class="category-label">category</label>
+          <select id="category" name="category">
+            <option value="">-- select --</option>
+            <option value="animation"<%= data.category === 'animation' ? ' selected' : '' %>>Animation</option>
+            <option value="app"<%= data.category === 'app' ? ' selected' : '' %>>App</option>
+            <option value="app-with-api"<%= data.category === 'app-with-api' ? ' selected' : '' %>>App with API</option>
+            <option value="colour-utility">Colour Utility</option>
+            <option value="game"<%= data.category === 'game' ? ' selected' : '' %>>Game</option>
+            <option value="widget"<%= data.category === 'widget' ? ' selected' : '' %>>Widget</option>
+          </select>
+        </p>
+
+        <p>
+          <input id="languages" type="text" name="languages" placeholder="languages array" value="<%= data.languages %>" />
+          <label for="languages">languages array</label>
+        </p>
+
+        <p>
+          <input id="play" type="text" name="infoButtons[play]" placeholder="Play url" value="<%= data.infoButtons.play %>" />
+          <label for="play">play url</label>
+        </p>
+
+        <p>
+          <input id="github" type="text" name="infoButtons[github]" placeholder="Github url" value="<%= data.infoButtons.github %>" />
+          <label for="github">github url</label>
+        </p>
+
+        <p>
+          <input id="code" type="text" name="infoButtons[code]" placeholder="Code url"  value="<%= data.infoButtons.code %>" />
+          <label for="code">code url</label>
+        </p>
+
+        <p>
+          <input id="image" type="text" name="image" placeholder="image (readonly)" value="<%= data.image %>" readonly />
+          <label for="image">image</label>
+        </p>
+
+        <p>
+          <input id="sortOrder" type="number" name="sortOrder" placeholder="sort order (readonly)" value="<%= data.sortOrder %>" readonly />
+          <label for="sortOrder">sort order</label>
+        </p>
+          
+        <p>
+          <input id="createdAt" type="text" name="createdAt" placeholder="created at (readonly)" value="<%= data.createdAt %>" readonly />
+          <label for="createdAt">created at</label>
+        </p>
+
+        <p><button type="submit">Update project</button></p>
+        
+      </form>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>
