@@ -30,9 +30,18 @@ form {
   max-width: 600px;
 }
 
-form > p {
+form p {
   padding-bottom: 15px;
   margin: 20px 0;
+}
+
+details {
+  margin: 20px 0;
+}
+
+details > summary {
+  padding-bottom: 20px;
+  cursor: pointer;
 }
 
 input, textarea, select {
@@ -94,7 +103,6 @@ textarea:not(:placeholder-shown) + label {
 
 textarea {
   overflow-y: auto;
-  resize: none;
   height: 60px;
 }
 
