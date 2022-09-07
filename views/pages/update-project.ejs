@@ -81,11 +81,18 @@
           <input id="createdAt" type="text" name="createdAt" placeholder="created at (readonly)" value="<%= data.createdAt %>" readonly />
           <label for="createdAt">created at</label>
         </p>
+          
+        <p>
+          <input id="updatedAt" type="text" name="updatedAt" placeholder="updated at (readonly)" value="<%= data.updatedAt %>" readonly />
+          <label for="updatedAt">updated at</label>
+        </p>
 
-        <p><button type="submit">Update project</button></p>
+        <button type="submit"><i class='fas fa-save m-r-5'></i>Update project</button>
+
+        <span class="m-l-20" id="update-status"></span>
         
       </form>
     </main>
-    <script src="../script.js"></script>
+    <%- include('../partials/footer'); %>
   </body>
 </html>

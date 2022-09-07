@@ -35,12 +35,9 @@ form > p {
   margin: 20px 0;
 }
 
-input, button, textarea, select {
+input, textarea, select {
   padding: 5px 10px;
   font-size: 1rem;
-}
-
-input, textarea, select {
   width: calc(100% - 20px)
 }
 
@@ -105,6 +102,26 @@ button {
   cursor: pointer;
   background: #333;
   color: #fff;
+  border-radius: 3px;  
+  padding: 3px 6px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    margin: 15px;
+  }
+  form {
+    width: auto;
+  }
+  h2 {
+    font-size: 1.25rem;
+  }
+}
+
+.m-r-5 {
+  margin-right: 5px;
 }
 
 .m-l-5 {

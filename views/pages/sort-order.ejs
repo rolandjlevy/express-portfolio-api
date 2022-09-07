@@ -39,13 +39,17 @@
         </section>
         <input id="order" name="order" type="hidden" />
         <p>A total of <%= projects.length %> projects</p>
-        <button class="update-btn" type="submit" class="m-b-20" disabled>Update</button><span class="m-l-20" id="update-status"></span>
+            
+        <button class="update-btn" type="submit" class="m-b-20" disabled><i class='fas fa-save m-r-5'></i>Update</button>
+            
+        <span class="m-l-20" id="update-status"></span>
       </form>
     </main>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="../../sort-order.js"></script>
+    <%- include('../partials/footer'); %>
   </body>
 </html>
 
