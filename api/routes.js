@@ -76,10 +76,63 @@ router.post('/add-slider-score', async (req, res, next) => {
 // Projects //
 //////////////
 
+// get all projects
 router.get('/projects', async (req, res, next) => {
   try {
     const projects = await Project.find();
     res.json(projects);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// get all project categories
+router.get('/project-categories', async (req, res, next) => {
+  try {
+    const group = await Project.aggregate([
+      {
+        "$group": {
+          _id: "$category"
+        }
+      }
+    ]);
+    const categories = group.map(item => item._id);
+    res.json(categories);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// get project category by name
+router.get('/project-category/:name', async (req, res, next) => {
+  const { name } = req.params;
+  try {
+    const categoryData = await Project.aggregate([
+      {
+        $match: {
+          category: name,
+        }
+      }
+    ])
+    res.json(categoryData);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// get project data by id
+router.get('/project-category/:name/:id', async (req, res, next) => {
+  const { name, id } = req.params;
+  try {
+    const projectData = await Project.aggregate([
+      {
+        $match: {
+          category: name,
+          id,
+        }
+      }
+    ])
+    res.json(projectData);
   } catch (err) {
     next(err);
   }
