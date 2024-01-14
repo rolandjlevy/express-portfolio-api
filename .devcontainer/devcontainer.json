@@ -1,0 +1,17 @@
+{
+	"name": "Node.js & Express",
+	"image": "mcr.microsoft.com/vscode/devcontainers/javascript-node:16-bullseye",
+	"forwardPorts": [
+		3000
+	],
+	"postCreateCommand": "npm install",
+	"remoteUser": "node",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"esbenp.prettier-vscode",
+				"dbaeumer.vscode-eslint"
+			]
+		}
+	}
+}

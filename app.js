@@ -1,9 +1,8 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const app = express();
-const { 
-  ORIGIN_URI_DEV, 
+const {
+  ORIGIN_URI_DEV,
   ORIGIN_URI_LIVE,
   ORIGIN_URI_SLIDERS,
   ORIGIN_URI_SLIDERS_TEMP,
@@ -12,7 +11,7 @@ const {
 
 const ejs = require('ejs');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 
 app.use(express.urlencoded({ extended: true }));
@@ -23,10 +22,18 @@ const routes = require('./api/routes');
 app.use('/api/routes', routes);
 
 app.use((req, res, next) => {
-  let origins = [ORIGIN_URI_DEV, ORIGIN_URI_LIVE, ORIGIN_URI_SLIDERS, ORIGIN_URI_SLIDERS_TEMP, ORIGIN_URI_SOLITAIRE];
+  let origins = [
+    ORIGIN_URI_DEV,
+    ORIGIN_URI_LIVE,
+    ORIGIN_URI_SLIDERS,
+    ORIGIN_URI_SOLITAIRE
+  ];
   if (origins.includes(req.query.origin)) {
-    res.header("Access-Control-Allow-Origin", req.query.origin);
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header('Access-Control-Allow-Origin', req.query.origin);
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept'
+    );
   }
   next();
 });
@@ -59,7 +66,7 @@ app.use((err, req, res, next) => {
   if (err.statusCode === 302) {
     return res.status(302).redirect('/not-found');
   }
-  return res.status(status).render('pages/error', { error:err.toString() })
+  return res.status(status).render('pages/error', { error: err.toString() });
 });
 
 // page not found (404)
