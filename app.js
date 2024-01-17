@@ -21,7 +21,7 @@ const routes = require('./api/routes');
 app.use('/api/routes', routes);
 
 app.use((req, res, next) => {
-  let origins = [
+  const origins = [
     ORIGIN_URI_DEV,
     ORIGIN_URI_LIVE,
     ORIGIN_URI_SLIDERS,
