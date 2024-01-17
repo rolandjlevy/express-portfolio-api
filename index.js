@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const express = require('express');
 require('dotenv').config();
 const app = require('./app.js');
 const { PORT = 3000, MONGODB_URI } = process.env;
 
+mongoose.set('strictQuery', true);
 mongoose
   .connect(MONGODB_URI, {
     useNewUrlParser: true,
