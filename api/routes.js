@@ -24,7 +24,7 @@ router.get('/solitaire', async (req, res, next) => {
 });
 
 router.post('/add-solitaire-score', async (req, res, next) => {
-  const { secret, ...values} = req.body;
+  const { secret, ...values } = req.body;
   if (secret !== PW) {
     const err = new Error('Incorrect secret: no access available');
     return next(err);
@@ -57,7 +57,7 @@ router.get('/sliders', async (req, res, next) => {
 });
 
 router.post('/add-slider-score', async (req, res, next) => {
-  const { secret, ...values} = req.body;
+  const { secret, ...values } = req.body;
   if (secret !== PW) {
     const err = new Error('Incorrect secret: no access available');
     return next(err);
@@ -91,12 +91,12 @@ router.get('/project-categories', async (req, res, next) => {
   try {
     const group = await Project.aggregate([
       {
-        "$group": {
-          _id: "$category"
+        $group: {
+          _id: '$category'
         }
       }
     ]);
-    const categories = group.map(item => item._id);
+    const categories = group.map((item) => item._id);
     res.json(categories);
   } catch (err) {
     next(err);
@@ -110,10 +110,10 @@ router.get('/project-category/:name', async (req, res, next) => {
     const categoryData = await Project.aggregate([
       {
         $match: {
-          category: name,
+          category: name
         }
       }
-    ])
+    ]);
     res.json(categoryData);
   } catch (err) {
     next(err);
@@ -128,10 +128,10 @@ router.get('/project-category/:name/:id', async (req, res, next) => {
       {
         $match: {
           category: name,
-          id,
+          id
         }
       }
-    ])
+    ]);
     res.json(projectData);
   } catch (err) {
     next(err);
@@ -160,24 +160,24 @@ router.get('/update-project', async (req, res, next) => {
   try {
     const projectExists = await Project.countDocuments({ _id });
     if (_id && projectExists) {
-    console.log({ projectExists, _id });
+      console.log({ projectExists, _id });
       try {
         Project.findOne({ _id })
-        .then(data => {
-          if (!data) {
-            const error = {
-              message: `Project entitled "${data.heading}" not found`,
+          .then((data) => {
+            if (!data) {
+              const error = {
+                message: `Project entitled "${data.heading}" not found`
+              };
+              return next(error);
             }
-            return next(error);
-          }
-          res.status(200).render('pages/update-project', { 
-            _id,
-            data
+            res.status(200).render('pages/update-project', {
+              _id,
+              data
+            });
+          })
+          .catch((err) => {
+            return next(err);
           });
-        })
-        .catch((err) => {
-          return next(err);
-        });
       } catch (err) {
         return next(err);
       }
@@ -191,20 +191,19 @@ router.post('/update-project', async (req, res, next) => {
   const _id = req.query.id;
   const languages = req.body.languages.replace(/ /g, '').split(',');
   const values = { ...req.body, languages };
-  
+
   if (values.secret !== PW) {
     const err = new Error('Incorrect secret: no access available');
     return next(err);
   }
 
   try {
-    await Project.findByIdAndUpdate(_id, values);  
+    await Project.findByIdAndUpdate(_id, values);
     const message = `The project named '${values.heading}' has been updated`;
     res.status(200).render('pages/success', { message });
   } catch (err) {
     return next(err);
   }
-  
 });
 
 ////////////////
@@ -214,7 +213,8 @@ router.post('/update-project', async (req, res, next) => {
 router.get('/sort-order', async (req, res, next) => {
   try {
     const projects = await Project.find();
-    projects.sort((a, b) => (a.sortOrder > b.sortOrder) ? 1 : -1);
+    console.log(JSON.stringify(projects, null, 2));
+    projects.sort((a, b) => (a.sortOrder > b.sortOrder ? 1 : -1));
     const imagesFolder = `${ORIGIN_URI_LIVE}/images/projects/`;
     res.render('pages/sort-order', { projects, imagesFolder });
   } catch (err) {
@@ -231,13 +231,13 @@ router.post('/sort-order', async (req, res, next) => {
   }
   try {
     const sortOrders = JSON.parse(order);
-    const writeOperations = sortOrders.map(item => {
+    const writeOperations = sortOrders.map((item) => {
       return {
         updateOne: {
           filter: { _id: item.id },
-          update: { 
-            sortOrder: item.sortOrder, 
-            active: item.active,
+          update: {
+            sortOrder: item.sortOrder,
+            active: item.active
           }
         }
       };
